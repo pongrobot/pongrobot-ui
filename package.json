@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.6.3",
-<<<<<<< HEAD
     "@craco/craco": "^6.1.2",
     "@emotion/react": "11",
     "@emotion/styled": "11",
@@ -13,29 +12,15 @@
     "@testing-library/user-event": "^12.1.10",
     "framer-motion": "4",
     "node-sass": "^6.0.0",
-=======
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "framer-motion": "^4",
->>>>>>> 2bb0dc576c28adf6370738b23ea1c829725c74c7
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.2",
-<<<<<<< HEAD
     "react-reverse-portal": "^2.1.0",
-=======
->>>>>>> 2bb0dc576c28adf6370738b23ea1c829725c74c7
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-use": "^17.2.4",
-<<<<<<< HEAD
     "sass": "^1.35.1",
-=======
->>>>>>> 2bb0dc576c28adf6370738b23ea1c829725c74c7
     "web-vitals": "^1.0.1"
   },
   "scripts": {
