@@ -2,13 +2,14 @@ import './Worldview.scss';
 import WorldviewControls from "./WorldviewControls";
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import * as THREE from 'three';
-import {Button, ResizeSensor} from "@blueprintjs/core";
+import {Button, ButtonGroup, ResizeSensor} from "@blueprintjs/core";
 import { useRaf } from 'rooks';
 import {Canvas} from "@react-three/fiber";
-import {Box, OrbitControls, Plane} from '@react-three/drei';
+import {Box, OrbitControls, PerspectiveCamera, Plane,GizmoHelper, GizmoViewport, GizmoViewcube} from '@react-three/drei';
 import Toolbar from "../toolbar/Toolbar";
 import ToolbarSection from "../toolbar/items/ToolbarSection";
 import ToolbarSpacer from "../toolbar/items/ToolbarSpacer";
+
 
 function Particles({ pointCount }) {
     const [positions, colors] = useMemo(() => {
@@ -55,19 +56,19 @@ function Particles({ pointCount }) {
 function Worldview() {
     const [viewportWidth, setViewportWidth] = useState(0);
     const [viewportHeight, setViewportHeight] = useState(500);
+    const controlsRef = useRef(null);
+    const camera = useRef();
+
+    console.log(controlsRef.current);
     return (
         <div className="Worldview">
-            <div className="Worldview__Controls">
-                <Toolbar>
-                    <ToolbarSection>
-                        <Button minimal>Test</Button>
-                    </ToolbarSection>
-                    <ToolbarSpacer />
-                    <ToolbarSection>
-                        <Button minimal icon="plus" />
-                        <Button minimal icon="minus" />
-                    </ToolbarSection>
-                </Toolbar>
+            <div className="Worldview__Controls bp3-elevation-2">
+                <ButtonGroup vertical>
+                    <Button disabled icon="plus" />
+                    <Button disabled icon="minus" />
+                    <Button icon="home" onClick={() => controlsRef.current.reset()} />
+                    <Button disabled icon="help" />
+                </ButtonGroup>
             </div>
             <div className="Worldview__Renderer">
                 <Canvas shadowMap>
@@ -84,7 +85,8 @@ function Worldview() {
                     <Particles pointCount={200} />
                     <axesHelper/>
                     <gridHelper args={[100, 100, "#5C7080", "#738694"]} />
-                    <OrbitControls screenSpacePanning maxDistance={10} />
+                    <PerspectiveCamera ref={camera} position={[0, 5, 5]} />
+                    <OrbitControls screenSpacePanning maxDistance={10} ref={controlsRef} camera={camera.current} />
                 </Canvas>
             </div>
         </div>

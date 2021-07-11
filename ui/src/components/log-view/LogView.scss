@@ -6,16 +6,17 @@
   flex-direction: column;
   justify-content: stretch;
   align-items: stretch;
+  background-color: $light-gray5;
 
   &__Content {
     flex: 1;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 }
 
 .LogLine {
   font-family: 'Source Code Pro', monospace;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   border-bottom: 1px solid $light-gray1;
 

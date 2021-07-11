@@ -18,10 +18,7 @@ function LogLine({ timestamp, text }) {
 function LogView() {
     return (
         <div className="LogView">
-            <Toolbar>
-
-            </Toolbar>
-            <div className="LogView__Content light-scrollbar">
+            <div className="LogView__Content">
                 <LogLine text={"Test log"} timestamp={moment()} />
             </div>
         </div>

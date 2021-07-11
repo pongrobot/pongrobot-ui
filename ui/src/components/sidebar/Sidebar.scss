@@ -3,7 +3,6 @@
 .Sidebar {
   flex: 0 0 auto;
   overflow: hidden;
-  border-top: 2px solid #C63D3D;
 
   display: flex;
   flex-direction: column;
@@ -13,7 +12,7 @@
   transition: width 0.25s;
   background-color: $dark-gray4;
   &__Open {
-    width: 250px;
+    width: 300px;
   }
 
   &__Closed {
@@ -36,8 +35,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    width: 1px;
-    background-color: $dark-gray2;
+    border-right: 0px solid $dark-gray2;
   }
 
   z-index: 20;
@@ -59,7 +57,7 @@
 }
 
 .SidebarContent {
-  width: 250px;
+  width: 300px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -85,7 +83,7 @@
 }
 
 .SidebarHeader {
-  height: 38px;
+  height: 40px;
   background-color: $dark-gray3;
   border-bottom: 1px solid $dark-gray2;
   display: flex;

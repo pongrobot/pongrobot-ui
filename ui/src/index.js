@@ -8,6 +8,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import { FocusStyleManager } from "@blueprintjs/core";
 import CollapsibleSection from "./components/collapsible-section/CollapsibleSection";
 import Viewports from "./components/viewports/Viewports";
+import {RosContextProvider} from "./context/RosContext";
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
@@ -22,13 +23,15 @@ function Root() {
      *
      */
     return (
-        <div className="LayoutHorizontal">
-            <Sidebar />
-            <div className="LayoutVertical">
-                <Header />
-                <Viewports />
+        <RosContextProvider>
+            <div className="LayoutHorizontal">
+                <Sidebar />
+                <div className="LayoutVertical">
+                    <Header />
+                    <Viewports />
+                </div>
             </div>
-        </div>
+        </RosContextProvider>
     );
 }
 
