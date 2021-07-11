@@ -1,0 +1,24 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
+.Header {
+  height: 40px;
+  font-family: "Blender Pro";
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-top: 2px solid #C63D3D;
+  border-bottom: 1px solid $dark-gray1;
+  /*
+  background-color: #C63D3D;
+  color: white;
+
+   */
+  background-color: $dark-gray3;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}

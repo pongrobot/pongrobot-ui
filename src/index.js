@@ -1,32 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button, ChakraProvider, extendTheme, HStack} from "@chakra-ui/react";
 import './assets/css/main.scss';
-import Navbar from "./components/navbar/Navbar";
+import Header from "./components/header/Header";
 import Worldview from "./components/worldview/Worldview";
-import SidebarContainer from "./components/sidebar/Sidebar";
+import Sidebar from "./components/sidebar/Sidebar";
 
-const theme = extendTheme({
-    config: {
-        initialColorMode: "dark",
-        useSystemColorMode: false
-    }
-});
+import { FocusStyleManager } from "@blueprintjs/core";
+import CollapsibleSection from "./components/collapsible-section/CollapsibleSection";
 
-function MainScreen() {
+FocusStyleManager.onlyShowFocusOnTabs();
+
+function Root() {
+    /**
+     * Sidebar
+     *
+     * Three main views we want to show:
+     * - 3D/2D viewport
+     * - System and ros service logs
+     * - Telemetry data, topic monitoring
+     *
+     */
     return (
-        <ChakraProvider theme={theme}>
-            <HStack align="stretch" justify="stretch" flex="1" spacing={0}>
-                <SidebarContainer />
-                <Worldview />
-            </HStack>
-        </ChakraProvider>
+        <div className="LayoutHorizontal">
+            <Sidebar />
+            <div className="LayoutVertical">
+                <Header />
+                <div className="Viewports">
+                    <CollapsibleSection title={"Worldview"}><Worldview /></CollapsibleSection>
+                    <CollapsibleSection title={"Logs"}>Logs</CollapsibleSection>
+                    <CollapsibleSection title={"Telemetry"}>Telemetry</CollapsibleSection>
+                </div>
+            </div>
+        </div>
     );
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <MainScreen />
+    <Root />
   </React.StrictMode>,
   document.getElementById('root')
 );

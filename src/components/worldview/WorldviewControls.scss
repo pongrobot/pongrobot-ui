@@ -1,0 +1,13 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
+.WorldviewControls {
+  height: 40px;
+  background-color: $light-gray2;
+  border-bottom: 1px solid $light-gray1;
+}
+
+@media(max-width: 800px) {
+  .WorldviewControls {
+    padding-left: 50px;
+  }
+}

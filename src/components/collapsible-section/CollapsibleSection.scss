@@ -1,0 +1,54 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
+.CollapsibleSection {
+  &__Header {
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    border-radius: 0px;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: $gray3;
+    padding-left: 10px;
+    cursor: pointer;
+    font-family: 'Blender Pro';
+
+    margin-bottom: 1px;
+
+    &__Collapsed {
+      margin-bottom: -2px;
+    }
+
+    .bp3-icon {
+      color: black;
+    }
+
+    /*
+    background-color: #f5f8fa;
+    background-image: -webkit-gradient(linear,left top, left bottom,from(hsla(0,0%,100%,.8)),to(hsla(0,0%,100%,0)));
+    background-image: linear-gradient(
+                    180deg
+            ,hsla(0,0%,100%,.8),hsla(0,0%,100%,0));
+    color: #182026;
+    -webkit-box-shadow: inset 0 0 0 1px rgb(16 22 26 / 20%), inset 0 -1px 0 rgb(16 22 26 / 10%);
+    box-shadow: inset 0 0 0 1px rgb(16 22 26 / 20%), inset 0 -1px 0 rgb(16 22 26 / 10%);
+     */
+  }
+
+  &__Content {
+  }
+}
+
+.bp3-dark {
+  .CollapsibleSection {
+    &__Header {
+      background-color: $dark-gray5;
+      font-weight: 400;
+    }
+  }
+}

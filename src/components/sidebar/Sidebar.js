@@ -1,37 +1,53 @@
-import {Box, useBreakpointValue} from "@chakra-ui/react";
-import * as portals from 'react-reverse-portal';
-import {useMemo} from "react";
-
+import './Sidebar.scss'
+import {useState} from "react";
+import {Button} from "@blueprintjs/core";
+import classNames from "classnames";
+import CollapsibleSection from "../collapsible-section/CollapsibleSection";
 
 function Sidebar() {
+    /*
+    TODO; set up a reverse portal to render the sidebar;
+    sidebar is either embedded in the flex layout for large screens, or an overlay for small screens.
+     */
+
+    const [isOpen, setIsOpen] = useState(true);
+
+    const classes = classNames({
+        'bp3-dark': true,
+        Sidebar: true,
+        Sidebar__Open: isOpen,
+        Sidebar__Closed: !isOpen
+    })
+
     return (
         <>
-        <h1>Sidebar</h1>
+            {isOpen && (
+                <div className="SidebarOverlay" />
+            )}
+            <div className={classes}>
+                <div className="SidebarHeader">
+                    {isOpen && (
+                        <>
+                        Controls
+                        </>
+                    )}
+                    <div className="SidebarHeader__Spacer" />
+                    <Button
+                        onClick={() => setIsOpen(!isOpen)}
+                        icon={isOpen ? 'menu-closed' : 'menu'}
+                        minimal
+                    />
+                </div>
+                {isOpen && (
+                    <>
+                        <CollapsibleSection padding title={"Actions"}>Test</CollapsibleSection>
+                        <CollapsibleSection padding title={"Parameters"}>Test</CollapsibleSection>
+                        <CollapsibleSection padding title={"Status"}>Test</CollapsibleSection>
+                    </>
+                )}
+            </div>
         </>
     )
 }
 
-function SidebarContainer() {
-    const portalNode = useMemo(() => portals.createHtmlPortalNode(), []);
-
-    const screenSize = useBreakpointValue({ base: "default", md: "large" });
-
-    return (
-        <>
-            <portals.InPortal node={portalNode}>
-                <Sidebar/>
-            </portals.InPortal>
-            {screenSize === "large" ? (
-                <Box flex="0 0 auto" width={200} boxShadow="lg" zIndex={1} bg="gray.900">
-                    <portals.OutPortal node={portalNode} />
-                </Box>
-            ) : (
-                <Box flex="0 0 auto" width={100}>
-                    <portals.OutPortal node={portalNode} />
-                </Box>
-            )}
-        </>
-    );
-}
-
-export default SidebarContainer;
+export default Sidebar;

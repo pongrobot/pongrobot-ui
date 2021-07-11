@@ -1,0 +1,69 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
+.Sidebar {
+  flex: 0 0 auto;
+  overflow: auto;
+  border-top: 2px solid #C63D3D;
+
+  transition: width 0.25s;
+  background-color: $dark-gray4;
+  &__Open {
+    width: 250px;
+  }
+
+  &__Closed {
+    width: 40px;
+  }
+
+}
+
+@media(max-width: 800px) {
+  .Sidebar {
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    -webkit-box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.0), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.0), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
+}
+
+  .SidebarOverlay {
+    display: block !important;
+  }
+}
+
+.SidebarSection {
+  border-top: 1px solid $gray1;
+  border-bottom: 1px solid $dark-gray3;
+}
+
+.SidebarOverlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 19;
+}
+
+.SidebarHeader {
+  height: 38px;
+  background-color: $dark-gray3;
+  border-bottom: 1px solid $dark-gray3;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  padding: 5px;
+  font-family: 'Blender Pro';
+  white-space: nowrap;
+  font-size: 18px;
+  border-right: 2px solid rgba($black, 0.2);
+
+  &__Spacer {
+    flex: 1;
+  }
+}
