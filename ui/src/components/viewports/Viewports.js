@@ -3,6 +3,7 @@ import Worldview from "../worldview/Worldview";
 import React, {useState} from "react";
 import {Button} from "@blueprintjs/core";
 import LogView from "../log-view/LogView";
+import TelemetryView from "../telemetry-view/TelemetryView";
 
 function TabButton({ active, onClick, children }) {
     if (active) {
@@ -16,7 +17,7 @@ function TabButton({ active, onClick, children }) {
     }
 }
 function Viewports() {
-    const [tab, setTab] = useState("worldview");
+    const [tab, setTab] = useState("telemetry");
     return (
         <div className="Viewports">
             <div className="Viewports__Tabs">
@@ -24,11 +25,11 @@ function Viewports() {
                 <TabButton active={tab === 'logs'} onClick={() => setTab("logs")}>Logs</TabButton>
                 <TabButton active={tab === 'telemetry'} onClick={() => setTab("telemetry")}>Telemetry</TabButton>
             </div>
-            <div className="Viewports__Content" style={{
-                display: tab === 'worldview' ? 'flex' : 'none'
-            }}>
-                <Worldview />
-            </div>
+            {tab === 'worldview' && (
+                <div className="Viewports__Content">
+                    <Worldview />
+                </div>
+            )}
             <div className="Viewports__Content" style={{
                 display: tab === 'logs' ? 'flex' : 'none'
             }}>
@@ -37,7 +38,7 @@ function Viewports() {
             <div className="Viewports__Content" style={{
                 display: tab === 'telemetry' ? 'flex' : 'none'
             }}>
-                <h1>Telemetry</h1>
+                <TelemetryView />
             </div>
         </div>
     )

@@ -20,6 +20,12 @@
   font-weight: 400;
   border-bottom: 1px solid $light-gray1;
 
+  &__Meta {
+    color: $gray2;
+    font-size: 12px;
+    text-align: center;
+  }
+
   &:hover {
     background-color: rgba(0,0,0,0.04);
   }

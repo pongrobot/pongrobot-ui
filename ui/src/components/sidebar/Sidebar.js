@@ -1,14 +1,19 @@
 import './Sidebar.scss'
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Button, ButtonGroup, FormGroup, Intent, NumericInput, Slider} from "@blueprintjs/core";
 import classNames from "classnames";
 import CollapsibleSection from "../collapsible-section/CollapsibleSection";
+import RosContext from "../../context/RosContext";
 
 function Sidebar() {
     /*
     TODO; set up a reverse portal to render the sidebar;
     sidebar is either embedded in the flex layout for large screens, or an overlay for small screens.
      */
+    const {
+        triggerLauncher,
+        setLauncherRpm
+    } = useContext(RosContext);
 
     const [isOpen, setIsOpen] = useState(true);
 
@@ -38,6 +43,12 @@ function Sidebar() {
                         minimal
                     />
                 </div>
+                {!isOpen && (
+                    <>
+                        <div className="SidebarCollapsedButton"><Button minimal icon="walk" onClick={() => setIsOpen(true)} /></div>
+                        <div className="SidebarCollapsedButton"><Button minimal icon="cog" onClick={() => setIsOpen(true)} /></div>
+                    </>
+                )}
                 {isOpen && (
                     <div className="SidebarContent dark-scrollbar">
                         <CollapsibleSection padding title={"Actions"} icon={"walk"} startOpen>
@@ -53,12 +64,12 @@ function Sidebar() {
                             <h1>Robot</h1>
                             <ButtonGroup fill vertical>
                                 <Button fill>Zero Yaw Gimbal</Button>
-                                <Button fill>Launch Ball</Button>
-                                <Button fill>Spin Up Motors (5sec)</Button>
+                                <Button fill onClick={() => triggerLauncher()}>Launch Ball</Button>
+                                <Button fill onClick={() => setLauncherRpm(1000)}>Spin Up Motors</Button>
                             </ButtonGroup>
                             <br />
                         </CollapsibleSection>
-                        <CollapsibleSection padding title={"Parameters"} icon="manually-entered-data" startOpen>
+                        <CollapsibleSection padding title={"Parameters"} icon="cog" startOpen>
                             <h1>Sensing Boundaries</h1>
                             <FormGroup label="Passthrough max depth" fill>
                                 <NumericInput />

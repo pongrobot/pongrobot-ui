@@ -15,10 +15,23 @@ function LogLine({ timestamp, text }) {
     );
 }
 
+function LogMetaLine({ text }) {
+    return (
+        <div className="LogLine LogLine__Meta">
+            <div className="LogLine__Text">
+                {text}
+            </div>
+        </div>
+    );
+}
+
 function LogView() {
+    const logStart = moment();
+
     return (
         <div className="LogView">
             <div className="LogView__Content">
+                <LogMetaLine placeholder text={`Viewing Log Messages since ${logStart.format('lll')}`}  />
                 <LogLine text={"Test log"} timestamp={moment()} />
             </div>
         </div>

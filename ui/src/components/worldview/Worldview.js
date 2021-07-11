@@ -1,65 +1,84 @@
 import './Worldview.scss';
 import WorldviewControls from "./WorldviewControls";
-import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import {useCallback, useContext, useEffect, useMemo, useRef, useState} from "react";
 import * as THREE from 'three';
-import {Button, ButtonGroup, ResizeSensor} from "@blueprintjs/core";
+import {Button, ButtonGroup, Card, Popover, Position, ResizeSensor, Tooltip} from "@blueprintjs/core";
 import { useRaf } from 'rooks';
 import {Canvas} from "@react-three/fiber";
 import {Box, OrbitControls, PerspectiveCamera, Plane,GizmoHelper, GizmoViewport, GizmoViewcube} from '@react-three/drei';
 import Toolbar from "../toolbar/Toolbar";
 import ToolbarSection from "../toolbar/items/ToolbarSection";
 import ToolbarSpacer from "../toolbar/items/ToolbarSpacer";
+import RosContext from "../../context/RosContext";
+import { decode } from 'base64-arraybuffer';
 
+function PointCloud() {
+    const pointCloud = useRef({
+        positions: [],
+        colors: []
+    });
 
-function Particles({ pointCount }) {
-    const [positions, colors] = useMemo(() => {
-        let positions = [],
-            colors = []
-        for (let i = 0; i < pointCount; i++) {
-            positions.push(5 - Math.random() * 10)
-            positions.push(5 - Math.random() * 10)
-            positions.push(5 - Math.random() * 10)
-            colors.push(1)
-            colors.push(0.5)
-            colors.push(0.5)
+    const rosContext = useContext(RosContext);
+    console.log(rosContext);
+
+    useEffect(() => {
+        if (rosContext) {
+            const pointCloudHandler = (msg) => {
+                const positions = [];
+                const colors = [];
+
+                const {
+                    data,
+                    fields,
+                    width,
+                    point_step
+                } = msg;
+                const dataArrayBuf = decode(data);
+                const dataView = new DataView(dataArrayBuf);
+
+                for (let i = 0; i < width; i += point_step) {
+                    positions.push(dataView.getFloat32(i));
+                    positions.push(dataView.getFloat32(i + 4));
+                    positions.push(dataView.getFloat32(i + 8));
+                    const rgbSlice = dataView.getFloat32(i + 16);
+                    colors.push(0.0);
+                    colors.push(1.0);
+                    colors.push(1.0);
+                }
+                pointCloud.current = {
+                    positions: new Float32Array(positions),
+                    colors: new Float32Array(colors)
+                };
+
+                console.log(pointCloud.current);
+
+                // Point cloud consists of the following format:
+                // Bytes 0 - 3: Float32 (x)
+                // Bytes 4 - 7: Float32 (y)
+                // Bytes 8 - 11: Float32 (z)
+                // Bytes 12 - 15: Float32 (rgb)
+            };
+
+            rosContext.setTopicHandler('/camera/depth/color/points', pointCloudHandler)
         }
-        return [new Float32Array(positions), new Float32Array(colors)]
-    }, [pointCount])
-
-    const attrib = useRef()
-    const hover = useCallback(e => {
-        e.stopPropagation()
-        attrib.current.array[e.index * 3] = 1
-        attrib.current.array[e.index * 3 + 1] = 1
-        attrib.current.array[e.index * 3 + 2] = 1
-        attrib.current.needsUpdate = true
-    }, [])
-
-    const unhover = useCallback(e => {
-        attrib.current.array[e.index * 3] = 1
-        attrib.current.array[e.index * 3 + 1] = 0.5
-        attrib.current.array[e.index * 3 + 2] = 0.5
-        attrib.current.needsUpdate = true
-    }, [])
+    }, [rosContext]);
 
     return (
-        <points onPointerOver={hover} onPointerOut={unhover}>
+        <points>
             <bufferGeometry attach="geometry">
-                <bufferAttribute attachObject={["attributes", "position"]} count={positions.length / 3} array={positions} itemSize={3} />
-                <bufferAttribute ref={attrib} attachObject={["attributes", "color"]} count={colors.length / 3} array={colors} itemSize={3} />
+                <bufferAttribute attachObject={["attributes", "position"]} count={pointCloud.current.positions.length / 3} array={pointCloud.current.positions} itemSize={3} />
+                <bufferAttribute attachObject={["attributes", "color"]} count={pointCloud.current.colors.length / 3} array={pointCloud.current.colors} itemSize={3} />
             </bufferGeometry>
             <pointsMaterial attach="material" vertexColors size={10} sizeAttenuation={false} />
         </points>
-    )
+    );
 }
-
 function Worldview() {
     const [viewportWidth, setViewportWidth] = useState(0);
     const [viewportHeight, setViewportHeight] = useState(500);
     const controlsRef = useRef(null);
     const camera = useRef();
 
-    console.log(controlsRef.current);
     return (
         <div className="Worldview">
             <div className="Worldview__Controls bp3-elevation-2">
@@ -67,7 +86,21 @@ function Worldview() {
                     <Button disabled icon="plus" />
                     <Button disabled icon="minus" />
                     <Button icon="home" onClick={() => controlsRef.current.reset()} />
-                    <Button disabled icon="help" />
+                    <Popover position={Position.LEFT} content={<div style={{
+                        padding: '10px'
+                    }}>
+                        <p>
+
+                            <b>Camera Controls</b>
+                        </p>
+                        <p>Left Click + Drag: Orbit</p>
+                        <p>Right Click + Drag: Pan</p>
+                        <p>Mouse Wheel: Zoom</p>
+                    </div>}>
+                        <Tooltip content="Help" position={Position.LEFT}>
+                            <Button icon="help" />
+                        </Tooltip>
+                    </Popover>
                 </ButtonGroup>
             </div>
             <div className="Worldview__Renderer">
@@ -82,10 +115,10 @@ function Worldview() {
                     <Plane receiveShadow position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} args={[100,100]}>
                         <meshLambertMaterial />
                     </Plane>
-                    <Particles pointCount={200} />
                     <axesHelper/>
+                    <PointCloud />
                     <gridHelper args={[100, 100, "#5C7080", "#738694"]} />
-                    <PerspectiveCamera ref={camera} position={[0, 5, 5]} />
+                    <PerspectiveCamera ref={camera} position={[0, 10, 0]} />
                     <OrbitControls screenSpacePanning maxDistance={10} ref={controlsRef} camera={camera.current} />
                 </Canvas>
             </div>
