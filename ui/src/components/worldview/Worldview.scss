@@ -1,0 +1,19 @@
+.Worldview {
+  flex: 1;
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  margin-top: 2px;
+
+  &__ResizeContainer {
+    z-index: 0;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  &__Renderer {
+    z-index: 0;
+  }
+}

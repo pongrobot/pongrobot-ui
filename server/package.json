@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Brobot UI interface server",
+  "main": "index.js",
+  "author": "Chris Dalke",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "journalctl": "^1.1.0",
+    "ws": "^7.5.3"
+  }
+}

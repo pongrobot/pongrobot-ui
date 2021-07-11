@@ -2,8 +2,13 @@
 
 .Sidebar {
   flex: 0 0 auto;
-  overflow: auto;
+  overflow: hidden;
   border-top: 2px solid #C63D3D;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
 
   transition: width 0.25s;
   background-color: $dark-gray4;
@@ -13,6 +18,13 @@
 
   &__Closed {
     width: 40px;
+  }
+
+  h1 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
 }
@@ -33,6 +45,10 @@
   }
 }
 
+.SidebarContent {
+  flex: 1;
+  overflow: scroll;
+}
 .SidebarSection {
   border-top: 1px solid $gray1;
   border-bottom: 1px solid $dark-gray3;

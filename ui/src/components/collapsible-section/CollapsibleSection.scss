@@ -1,6 +1,9 @@
 @import '~@blueprintjs/core/lib/scss/variables';
 
 .CollapsibleSection {
+  &__Flex {
+    flex: 1;
+  }
   &__Header {
     width: 100%;
     height: 30px;
@@ -18,11 +21,6 @@
     cursor: pointer;
     font-family: 'Blender Pro';
 
-    margin-bottom: 1px;
-
-    &__Collapsed {
-      margin-bottom: -2px;
-    }
 
     .bp3-icon {
       color: black;

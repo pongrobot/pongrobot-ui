@@ -3,8 +3,13 @@ import './CollapsibleSection.scss';
 import {Button, Collapse} from "@blueprintjs/core";
 import classNames from "classnames";
 
-function CollapsibleSection({ title, children, padding }) {
-    const [collapsed, setCollapsed] = useState(true);
+function CollapsibleSection({ title, children, padding, flex, startOpen }) {
+    const [collapsed, setCollapsed] = useState(!startOpen);
+
+    const containerClassNames = classNames({
+        CollapsibleSection: true,
+        CollapsibleSection__Flex: flex && !collapsed
+    });
 
     const buttonClassNames = classNames({
         CollapsibleSection__Header: true,
@@ -12,14 +17,14 @@ function CollapsibleSection({ title, children, padding }) {
     })
 
     return (
-        <div className="CollapsibleSection">
+        <div className={containerClassNames}>
             <Button className={buttonClassNames} onClick={() => setCollapsed(!collapsed)}
             icon={collapsed ? 'chevron-down' : 'chevron-right'}>
                 <div className="unselectable">
                     {title}
                 </div>
             </Button>
-            <Collapse isOpen={collapsed}>
+            <Collapse isOpen={!collapsed}>
                 <div className="CollapsibleSection__Content"  style={{
                         padding: padding ? '8px' : '0px'
                     }}>

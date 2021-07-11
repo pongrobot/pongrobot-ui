@@ -26,9 +26,7 @@ function Root() {
             <div className="LayoutVertical">
                 <Header />
                 <div className="Viewports">
-                    <CollapsibleSection title={"Worldview"}><Worldview /></CollapsibleSection>
-                    <CollapsibleSection title={"Logs"}>Logs</CollapsibleSection>
-                    <CollapsibleSection title={"Telemetry"}>Telemetry</CollapsibleSection>
+                    <Worldview />
                 </div>
             </div>
         </div>
