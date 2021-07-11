@@ -7,6 +7,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 
 import { FocusStyleManager } from "@blueprintjs/core";
 import CollapsibleSection from "./components/collapsible-section/CollapsibleSection";
+import Viewports from "./components/viewports/Viewports";
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
@@ -25,9 +26,7 @@ function Root() {
             <Sidebar />
             <div className="LayoutVertical">
                 <Header />
-                <div className="Viewports">
-                    <Worldview />
-                </div>
+                <Viewports />
             </div>
         </div>
     );

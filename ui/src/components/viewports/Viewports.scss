@@ -1,0 +1,55 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
+.Viewports {
+  flex: 1;
+  position: relative;
+  z-index: 0;
+
+  &__Tabs {
+    background-color: $light-gray5;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1);
+    border-radius: 0px;
+    z-index: 1;
+  }
+
+  &__Tab {
+    z-index: 0;
+    border-radius: 0px;
+    text-transform: uppercase;
+    height: 31px;
+    font-weight: 600;
+    font-size: 15px;
+    color: $gray3;
+    padding-left: 10px;
+    cursor: pointer;
+    font-family: 'Blender Pro';
+    position: relative;
+
+    &__Active {
+      position: relative;
+      &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        left: 0;
+        right: 0;
+        height: 2px;
+        bottom: 0;
+        background-color: $blue1;
+      }
+    }
+  }
+  &__Content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 71px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+  }
+}

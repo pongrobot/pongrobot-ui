@@ -3,6 +3,8 @@
 @import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
 @import '~@blueprintjs/core/lib/scss/variables';
 @import '../fonts/blender_pro/stylesheet.css';
+@import '../fonts/source_code_pro/stylesheet.css';
+@import './scrollbars.scss';
 
 body {
   margin: 0;
@@ -12,6 +14,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh !important;
+  max-height: 100vh !important;
+  height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -54,15 +58,6 @@ h1,h2,h3,h4,h5,h6 {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
-}
-
-.Viewports {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
-  overflow: hidden;
 }
 
 @media(max-width: 800px) {

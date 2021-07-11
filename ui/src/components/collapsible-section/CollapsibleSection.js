@@ -1,9 +1,9 @@
 import {useState} from "react";
 import './CollapsibleSection.scss';
-import {Button, Collapse} from "@blueprintjs/core";
+import {Button, Collapse, Icon} from "@blueprintjs/core";
 import classNames from "classnames";
 
-function CollapsibleSection({ title, children, padding, flex, startOpen }) {
+function CollapsibleSection({ title, children, padding, flex, startOpen, icon }) {
     const [collapsed, setCollapsed] = useState(!startOpen);
 
     const containerClassNames = classNames({
@@ -19,7 +19,7 @@ function CollapsibleSection({ title, children, padding, flex, startOpen }) {
     return (
         <div className={containerClassNames}>
             <Button className={buttonClassNames} onClick={() => setCollapsed(!collapsed)}
-            icon={collapsed ? 'chevron-down' : 'chevron-right'}>
+            icon={collapsed ? 'chevron-down' : 'chevron-right'} rightIcon={icon}>
                 <div className="unselectable">
                     {title}
                 </div>

@@ -1,0 +1,41 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
+.LogView {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+
+  &__Content {
+    flex: 1;
+    overflow: scroll;
+  }
+}
+
+.LogLine {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  border-bottom: 1px solid $light-gray1;
+
+  &:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  &__Timestamp {
+    width: 170px;
+    flex: 0 0 auto;
+    padding: 5px;
+    font-weight: 600;
+  }
+  &__Text {
+    flex: 1;
+    padding: 5px;
+  }
+}

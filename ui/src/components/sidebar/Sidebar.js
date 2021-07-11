@@ -1,6 +1,6 @@
 import './Sidebar.scss'
 import {useState} from "react";
-import {Button, ButtonGroup} from "@blueprintjs/core";
+import {Button, ButtonGroup, FormGroup, Intent, NumericInput, Slider} from "@blueprintjs/core";
 import classNames from "classnames";
 import CollapsibleSection from "../collapsible-section/CollapsibleSection";
 
@@ -34,37 +34,53 @@ function Sidebar() {
                     <div className="SidebarHeader__Spacer" />
                     <Button
                         onClick={() => setIsOpen(!isOpen)}
-                        icon={isOpen ? 'menu-closed' : 'menu'}
+                        icon={isOpen ? 'menu-closed' : 'menu-open'}
                         minimal
                     />
                 </div>
                 {isOpen && (
-                    <div className="SidebarContent">
-                        <CollapsibleSection padding title={"Actions"}>
+                    <div className="SidebarContent dark-scrollbar">
+                        <CollapsibleSection padding title={"Actions"} icon={"walk"} startOpen>
                             <h1>System</h1>
-                            <ButtonGroup fill>
-                                <Button small>Shutdown</Button>
-                                <Button small>Restart</Button>
+                            <ButtonGroup fill vertical>
+                                <ButtonGroup fill>
+                                <Button intent={Intent.DANGER} icon="power">Shutdown</Button>
+                                <Button intent={Intent.WARNING} icon="refresh">Restart</Button>
+                                </ButtonGroup>
+                                <Button>Restart ROS</Button>
                             </ButtonGroup>
-                            <h1>ROS</h1>
-                            <Button small fill>Restart ROS Services</Button>
+                            <br />
                             <h1>Robot</h1>
                             <ButtonGroup fill vertical>
-                                <Button small fill>Zero Yaw Gimbal</Button>
-                                <Button small fill>Launch Ball</Button>
-                                <Button small fill>Spin Up Motors (5sec)</Button>
+                                <Button fill>Zero Yaw Gimbal</Button>
+                                <Button fill>Launch Ball</Button>
+                                <Button fill>Spin Up Motors (5sec)</Button>
                             </ButtonGroup>
+                            <br />
                         </CollapsibleSection>
-                        <CollapsibleSection padding title={"Parameters"}>
-                            <h1>Perception</h1>
-                            <p>Passthrough max depth</p>
-                            <p>Passthrough min depth</p>
-                            <p>Obj max height</p>
+                        <CollapsibleSection padding title={"Parameters"} icon="manually-entered-data" startOpen>
+                            <h1>Sensing Boundaries</h1>
+                            <FormGroup label="Passthrough max depth" fill>
+                                <NumericInput />
+                            </FormGroup>
+                            <FormGroup label="Passthrough min depth" fill>
+                                <NumericInput />
+                            </FormGroup>
+                            <FormGroup label="Obj max height" fill>
+                                <NumericInput />
+                            </FormGroup>
+                            <br />
+
+                            <h1>Segmentation</h1>
+                            <br />
+
                             <p>Plane segmentation EPS angle</p>
                             <p>Plane segmentation dist threshold</p>
                             <p>Cluster point tolerance</p>
                             <p>Cluster min size</p>
                             <p>Cluster max size</p>
+                            <br />
+
                             <h1>Actuation</h1>
                             <p>VESC ramp time</p>
                             <p>VESC cooldown time</p>
@@ -72,6 +88,7 @@ function Sidebar() {
                             <p>VESC fudge factor</p>
                             <p>VESC timeout time</p>
                             <p>VESC RPM accel limit</p>
+                            <br />
                         </CollapsibleSection>
                     </div>
                 )}

@@ -27,17 +27,30 @@
     margin-bottom: 5px;
   }
 
+  position: relative;
+  &::after {
+    z-index: 3;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    background-color: $dark-gray2;
+  }
+
+  z-index: 20;
+  -webkit-box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.0), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.0), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
 }
 
 @media(max-width: 800px) {
   .Sidebar {
-    z-index: 20;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
-    -webkit-box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.0), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
-    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.0), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
 }
 
   .SidebarOverlay {
@@ -46,8 +59,14 @@
 }
 
 .SidebarContent {
+  width: 250px;
   flex: 1;
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  overflow: auto;
+  z-index: 0;
 }
 .SidebarSection {
   border-top: 1px solid $gray1;
@@ -68,7 +87,7 @@
 .SidebarHeader {
   height: 38px;
   background-color: $dark-gray3;
-  border-bottom: 1px solid $dark-gray3;
+  border-bottom: 1px solid $dark-gray2;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -77,7 +96,8 @@
   font-family: 'Blender Pro';
   white-space: nowrap;
   font-size: 18px;
-  border-right: 2px solid rgba($black, 0.2);
+  z-index: 1;
+  position: relative;
 
   &__Spacer {
     flex: 1;

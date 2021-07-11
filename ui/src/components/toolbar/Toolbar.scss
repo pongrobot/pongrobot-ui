@@ -1,0 +1,48 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
+.toolbar {
+  flex: 0 0 auto;
+  min-height: 31px;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  background-color: $light-gray4;
+
+  .bp3-button {
+    border-radius: 0px;
+  }
+
+  &__top {
+    border-bottom: 1px solid rgba(16, 22, 26, 0.15);
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba(16, 22, 26, 0.15);
+  }
+
+  .toolbarItem {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__rightBorder {
+      border-right: 1px solid rgba(16, 22, 26, 0.15);
+    }
+
+    &__leftBorder {
+      border-left: 1px solid rgba(16, 22, 26, 0.15);
+    }
+  }
+
+  .toolbarSpacer {
+    flex: 1 1 auto;
+  }
+
+  .toolbarDivider {
+    flex: 0 0 auto;
+    border-right: 1px solid rgba(16, 22, 26, 0.15);
+  }
+}
