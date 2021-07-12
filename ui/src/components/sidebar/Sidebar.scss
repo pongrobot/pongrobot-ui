@@ -16,7 +16,7 @@
   }
 
   &__Closed {
-    width: 40px;
+    width: 0px;
   }
 
   h1 {
@@ -56,6 +56,17 @@
   }
 }
 
+.SidebarOpenButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 39px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .SidebarCollapsedButton {
   width: 100%;
   padding: 5px;

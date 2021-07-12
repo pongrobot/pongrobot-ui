@@ -29,6 +29,15 @@ function Sidebar() {
             {isOpen && (
                 <div className="SidebarOverlay" onClick={() => setIsOpen(false)} />
             )}
+            {!isOpen && (
+                <div className="SidebarOpenButton bp3-dark" onClick={() => setIsOpen(true)}>
+                    <Button
+                    onClick={() => setIsOpen(true)}
+                    icon={'menu-open'}
+                    minimal
+                    />
+                </div>
+            )}
             <div className={classes}>
                 <div className="SidebarHeader">
                     {isOpen && (
@@ -43,12 +52,6 @@ function Sidebar() {
                         minimal
                     />
                 </div>
-                {!isOpen && (
-                    <>
-                        <div className="SidebarCollapsedButton"><Button minimal icon="walk" onClick={() => setIsOpen(true)} /></div>
-                        <div className="SidebarCollapsedButton"><Button minimal icon="cog" onClick={() => setIsOpen(true)} /></div>
-                    </>
-                )}
                 {isOpen && (
                     <div className="SidebarContent dark-scrollbar">
                         <CollapsibleSection padding title={"Actions"} icon={"walk"} startOpen>
