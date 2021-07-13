@@ -7,6 +7,8 @@
   justify-content: stretch;
   align-items: stretch;
   background-color: $light-gray5;
+  overflow: hidden;
+  padding-left: 4px;
 
   &__Content {
     flex: 1;
@@ -16,14 +18,37 @@
 
 .LogLine {
   font-family: monospace;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 400;
   border-bottom: 1px solid $light-gray1;
+
+  &__Error {
+    color: $red3;
+    font-weight: 600;
+  }
+  &__Warning {
+    color: $orange3;
+    font-weight: 600;
+  }
+  &__Info {
+    color: $blue3;
+    font-weight: 600;
+  }
 
   &__Meta {
     color: $gray2;
     font-size: 12px;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+
+    .bp3-spinner {
+      margin-left: 5px;
+    }
+
   }
 
   &:hover {
