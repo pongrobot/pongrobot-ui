@@ -5,7 +5,16 @@ import * as THREE from 'three';
 import {Button, ButtonGroup, Card, Popover, Position, ResizeSensor, Tooltip} from "@blueprintjs/core";
 import { useRaf } from 'rooks';
 import {Canvas} from "@react-three/fiber";
-import {Box, OrbitControls, PerspectiveCamera, Plane,GizmoHelper, GizmoViewport, GizmoViewcube} from '@react-three/drei';
+import {
+    Box,
+    OrbitControls,
+    PerspectiveCamera,
+    Plane,
+    GizmoHelper,
+    GizmoViewport,
+    GizmoViewcube,
+    Text
+} from '@react-three/drei';
 import Toolbar from "../toolbar/Toolbar";
 import ToolbarSection from "../toolbar/items/ToolbarSection";
 import ToolbarSpacer from "../toolbar/items/ToolbarSpacer";
@@ -115,6 +124,10 @@ function Worldview() {
                     <Plane receiveShadow position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} args={[100,100]}>
                         <meshLambertMaterial />
                     </Plane>
+                    <Text fontSize={0.2} anchorX="center" anchorY="middle" color="white" outlineWidth={0.02} position={[0, 1, 0]}>
+                        hello world!
+                    </Text>
+                    <axesHelper position={[0, 1, 0]} />
                     <axesHelper/>
                     <PointCloud />
                     <gridHelper args={[100, 100, "#5C7080", "#738694"]} />

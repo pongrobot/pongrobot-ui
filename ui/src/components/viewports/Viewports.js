@@ -17,7 +17,7 @@ function TabButton({ active, onClick, children }) {
     }
 }
 function Viewports() {
-    const [tab, setTab] = useState("telemetry");
+    const [tab, setTab] = useState("worldview");
     return (
         <div className="Viewports">
             <div className="Viewports__Tabs">

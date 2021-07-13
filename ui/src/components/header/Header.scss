@@ -1,11 +1,22 @@
 @import '~@blueprintjs/core/lib/scss/variables';
 
 .Header {
+  &__Text {
+    flex: 1;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: "Blender Pro";
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+  }
   height: 40px;
-  font-family: "Blender Pro";
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
   border-bottom: 1px solid $dark-gray1;
   /*
   background-color: #C63D3D;
@@ -16,8 +27,33 @@
   color: white;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.Header__OnlineStatus {
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  padding-left: 2px;
+  padding-right: 8px;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  border-radius: 5px;
+  margin-right: 10px;
+
+  &__Online {
+    background-color: rgba($green3, 0.2);
+    color: $green5;
+  }
+
+  &__Offline {
+    background-color: rgba($orange3, 0.2);
+    color: $orange5;
+  }
 }

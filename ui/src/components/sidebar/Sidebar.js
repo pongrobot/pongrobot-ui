@@ -15,7 +15,7 @@ function Sidebar() {
         setLauncherRpm
     } = useContext(RosContext);
 
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const classes = classNames({
         'bp3-dark': true,
@@ -54,7 +54,7 @@ function Sidebar() {
                 </div>
                 {isOpen && (
                     <div className="SidebarContent dark-scrollbar">
-                        <CollapsibleSection padding title={"Actions"} icon={"walk"} startOpen>
+                        <CollapsibleSection padding title={"Actions"} startOpen>
                             <h1>System</h1>
                             <ButtonGroup fill vertical>
                                 <ButtonGroup fill>
@@ -72,7 +72,7 @@ function Sidebar() {
                             </ButtonGroup>
                             <br />
                         </CollapsibleSection>
-                        <CollapsibleSection padding title={"Parameters"} icon="cog" startOpen>
+                        <CollapsibleSection padding title={"Perception Options"}>
                             <h1>Sensing Boundaries</h1>
                             <FormGroup label="Passthrough max depth" fill>
                                 <NumericInput />
@@ -95,6 +95,8 @@ function Sidebar() {
                             <p>Cluster max size</p>
                             <br />
 
+                        </CollapsibleSection>
+                        <CollapsibleSection padding title={"Actuation Options"}>
                             <h1>Actuation</h1>
                             <p>VESC ramp time</p>
                             <p>VESC cooldown time</p>
