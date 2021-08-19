@@ -1,7 +1,14 @@
 import {createContext, useEffect, useRef, useState} from "react";
 import ROSLIB from 'roslib';
+import axios from "axios";
 const RosContext = createContext(null);
 export default RosContext;
+
+const client = axios.create({
+    baseURL: `http://brobot:3001/`,
+    timeout: 5000,
+    crossDomain: true
+});
 
 export function RosContextProvider({ children }) {
     const [connected, setConnected] = useState(false);
@@ -11,6 +18,18 @@ export function RosContextProvider({ children }) {
     const [hasBall, setHasBall] = useState(null);
     const topics = useRef({});
     const handlers = useRef({});
+
+    const shutdownSystem = async () => {
+        await client.post('/shutdown-system', {});
+    };
+
+    const restartSystem = async () => {
+        await client.post('/restart-system', {});
+    };
+
+    const restartRos = async () => {
+        await client.post('/restart-ros', {});
+    };
 
     const triggerLauncher = () => {
         topics.current['/launcher/trigger'].publish(new ROSLIB.Message());
@@ -110,6 +129,8 @@ export function RosContextProvider({ children }) {
 
 
     return (<RosContext.Provider value={{
+        ros,
+        tfClient,
         connected,
         cameraLinkTf,
         hasBall,
@@ -117,7 +138,10 @@ export function RosContextProvider({ children }) {
         setLauncherRpm,
         setTopicHandler,
         topics,
-        handlers
+        handlers,
+        shutdownSystem,
+        restartSystem,
+        restartRos
     }}>
         {children}
     </RosContext.Provider>)

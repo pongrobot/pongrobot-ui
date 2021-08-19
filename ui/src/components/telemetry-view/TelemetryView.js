@@ -35,7 +35,6 @@ function TelemetryView() {
                 maxHeight: '400px',
                 overflow: 'auto'
             }}>
-                {JSON.stringify(rosContext, null, 4)}
             </pre>
         </div>
     );

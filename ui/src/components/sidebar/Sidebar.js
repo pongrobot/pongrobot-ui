@@ -4,6 +4,7 @@ import {Button, ButtonGroup, FormGroup, Intent, NumericInput, Slider} from "@blu
 import classNames from "classnames";
 import CollapsibleSection from "../collapsible-section/CollapsibleSection";
 import RosContext from "../../context/RosContext";
+import {useLocalStorage} from "react-use";
 
 function Sidebar() {
     /*
@@ -12,10 +13,13 @@ function Sidebar() {
      */
     const {
         triggerLauncher,
-        setLauncherRpm
+        setLauncherRpm,
+        shutdownSystem,
+        restartSystem,
+        restartRos
     } = useContext(RosContext);
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useLocalStorage('sidebar', false);
 
     const classes = classNames({
         'bp3-dark': true,
@@ -58,8 +62,8 @@ function Sidebar() {
                             <h1>System</h1>
                             <ButtonGroup fill vertical>
                                 <ButtonGroup fill>
-                                <Button intent={Intent.DANGER} icon="power">Shutdown</Button>
-                                <Button intent={Intent.WARNING} icon="refresh">Restart</Button>
+                                <Button intent={Intent.DANGER} icon="power" onClick={() => shutdownSystem()}>Shutdown</Button>
+                                <Button intent={Intent.WARNING} icon="refresh" onClick={() => restartSystem()}>Restart</Button>
                                 </ButtonGroup>
                                 <Button>Restart ROS</Button>
                             </ButtonGroup>

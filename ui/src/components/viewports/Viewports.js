@@ -30,11 +30,11 @@ function Viewports() {
                     <Worldview />
                 </div>
             )}
-            <div className="Viewports__Content" style={{
-                display: tab === 'logs' ? 'flex' : 'none'
-            }}>
-                <LogView />
-            </div>
+            {tab === 'logs' && (
+                <div className="Viewports__Content">
+                    <LogView />
+                </div>
+            )}
             <div className="Viewports__Content" style={{
                 display: tab === 'telemetry' ? 'flex' : 'none'
             }}>

@@ -11552,7 +11552,16 @@ rooks@^5.0.3:
     lodash.debounce "^4.0.8"
     raf "^3.4.1"
 
-roslib@^1.1.0:
+ros3d@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ros3d/-/ros3d-1.0.1.tgz#b071c80f32e9d2e1d0d4472356c4630a36f538da"
+  integrity sha512-G9dj3DkPr7RddBWNlQKNzqsOKiXs5VkSJ8s7h3+FnxqLYQNsMUkDDefRKaYVxtp5MMzeJNI/73cUoEOA6RFNqQ==
+  dependencies:
+    eventemitter2 "^4.1.0"
+    roslib "^1.0.0"
+    three "^0.89.0"
+
+roslib@^1.0.0, roslib@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/roslib/-/roslib-1.1.0.tgz#78a0a95d0a771597b3b71879617a4eb88cb36660"
   integrity sha512-T1tZ3boTpOVvNrEscX1AZGieefD+W8kRilNZv8qHTESKo5KjYtighwp88KHsZbQQogVcROJWAUQVWok46DJJnQ==
@@ -12724,6 +12733,11 @@ three@^0.130.1:
   version "0.130.1"
   resolved "https://registry.yarnpkg.com/three/-/three-0.130.1.tgz#797588b2877ace31603bbbc864eb2e3022f0b3b4"
   integrity sha512-OSPPKcGvFSiGkG3jFrwwC76PBV/ZSrGxpBbg28bW8s9GU8r/y2spNGtEXHEb/CVqo0Ctf5Lx2rVaxQZB6OasaA==
+
+three@^0.89.0:
+  version "0.89.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.89.0.tgz#4442d819a6168871b8d2cb37ad12a24310c170f5"
+  integrity sha1-RELYGaYWiHG40ss3rRKiQxDBcPU=
 
 throat@^5.0.0:
   version "5.0.0"

@@ -56,9 +56,8 @@ function LogView() {
         const {
             data
         } = await client.get('/journalctl');
-        console.log(data);
-        setLines(data);
-        scrollRef.current.scrollIntoView(false);
+        setLines(data.reverse());
+        //scrollRef.current.scrollIntoView(false);
         setLoading(false);
     }
     useEffect(() => {
@@ -88,14 +87,6 @@ function LogView() {
                 {lines.map((line) => (
                     <LogLine text={line} timestamp={moment()} />
                 ))}
-                <LogMetaLine placeholder text={(
-                    <>
-                        Viewing last {lines.length} log messages.&nbsp;<a href="#" onClick={() => load()}>Refresh</a>
-                        {loading && (
-                            <Spinner size={16} />
-                        )}
-                    </>
-                )}  />
                 <div ref={scrollRef} />
             </div>
         </div>
