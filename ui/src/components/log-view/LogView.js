@@ -1,7 +1,7 @@
 import './LogView.scss';
 import Toolbar from "../toolbar/Toolbar";
 import moment from "moment";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import axios from "axios";
 import {Spinner} from "@blueprintjs/core";
 import classNames from "classnames";
@@ -51,37 +51,19 @@ function LogView() {
     const scrollRef = useRef(null);
     const [loading, setLoading] = useState(false);
     const [lines, setLines] = useState([]);
-    const load = async () => {
-        setLoading(true);
-        const {
-            data
-        } = await client.get('/journalctl');
-        setLines(data.reverse());
-        //scrollRef.current.scrollIntoView(false);
-        setLoading(false);
+
+    const [startTime, setStartTime] = useState(moment());
+    const clear = () => {
+        setLines([]);
+        setStartTime(moment());
     }
-    useEffect(() => {
-        load();
-    }, []);
-
-    const { start, stop } = useInterval(() => {
-        load();
-    }, 5000);
-    useEffect(() => {
-        start();
-        return () => stop();
-    }, [start, stop]);
-
 
     return (
         <div className="LogView">
             <div className="LogView__Content">
                 <LogMetaLine placeholder text={(
                     <>
-                        Viewing last {lines.length} log messages.&nbsp;<a href="#" onClick={() => load()}>Refresh</a>
-                        {loading && (
-                            <Spinner size={16} />
-                        )}
+                        Streaming new log messages starting at {startTime.toISOString()}&nbsp;<a href="#" onClick={() => clear()}>Clear</a>
                     </>
                 )}  />
                 {lines.map((line) => (

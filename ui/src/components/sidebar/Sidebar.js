@@ -3,22 +3,9 @@ import {useContext, useState} from "react";
 import {Button, ButtonGroup, FormGroup, Intent, NumericInput, Slider} from "@blueprintjs/core";
 import classNames from "classnames";
 import CollapsibleSection from "../collapsible-section/CollapsibleSection";
-import RosContext from "../../context/RosContext";
 import {useLocalStorage} from "react-use";
 
 function Sidebar() {
-    /*
-    TODO; set up a reverse portal to render the sidebar;
-    sidebar is either embedded in the flex layout for large screens, or an overlay for small screens.
-     */
-    const {
-        triggerLauncher,
-        setLauncherRpm,
-        shutdownSystem,
-        restartSystem,
-        restartRos
-    } = useContext(RosContext);
-
     const [isOpen, setIsOpen] = useLocalStorage('sidebar', false);
 
     const classes = classNames({
@@ -62,19 +49,18 @@ function Sidebar() {
                             <h1>System</h1>
                             <ButtonGroup fill vertical>
                                 <ButtonGroup fill>
-                                <Button intent={Intent.DANGER} icon="power" onClick={() => shutdownSystem()}>Shutdown</Button>
-                                <Button intent={Intent.WARNING} icon="refresh" onClick={() => restartSystem()}>Restart</Button>
+                                <Button intent={Intent.DANGER} icon="power" onClick={() => {}}>Shutdown</Button>
+                                <Button intent={Intent.WARNING} icon="refresh" onClick={() => {}}>Restart</Button>
                                 </ButtonGroup>
                                 <Button>Restart ROS</Button>
                             </ButtonGroup>
                             <br />
-                            <h1>Robot</h1>
+                            <h1>Hardware Utilities</h1>
                             <ButtonGroup fill vertical>
                                 <Button fill>Zero Yaw Gimbal</Button>
-                                <Button fill onClick={() => triggerLauncher()}>Launch Ball</Button>
-                                <Button fill onClick={() => setLauncherRpm(1000)}>Spin Up Motors</Button>
+                                <Button fill onClick={() => {}}>Launch Ball</Button>
+                                <Button fill onClick={() => {}}>Spin Up Motors</Button>
                             </ButtonGroup>
-                            <br />
                         </CollapsibleSection>
                         <CollapsibleSection padding title={"Perception Options"}>
                             <h1>Sensing Boundaries</h1>

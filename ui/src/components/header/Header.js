@@ -1,12 +1,9 @@
 import './Header.scss';
-import RosContext from "../../context/RosContext";
 import {useContext} from "react";
 import {Icon} from "@blueprintjs/core";
 
 function Header() {
-    const {
-        connected
-    } = useContext(RosContext);
+    const connected = false;
 
     return (
         <div className="Header">

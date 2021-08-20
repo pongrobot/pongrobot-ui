@@ -1,6 +1,5 @@
 import './TelemetryView.scss';
 import {useContext, useEffect, useRef} from "react";
-import RosContext from "../../context/RosContext";
 import jpeg from 'jpeg-js';
 
 function rgb8ImageToBase64Jpeg (msg) {
@@ -27,7 +26,6 @@ function rgb8ImageToBase64Jpeg (msg) {
 
 
 function TelemetryView() {
-    const rosContext = useContext(RosContext);
     return (
         <div className="TelemetryView">
             <h4>Raw Telemetry Data</h4>

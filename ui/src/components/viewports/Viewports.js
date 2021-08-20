@@ -25,16 +25,16 @@ function Viewports() {
                 <TabButton active={tab === 'logs'} onClick={() => setTab("logs")}>Logs</TabButton>
                 <TabButton active={tab === 'telemetry'} onClick={() => setTab("telemetry")}>Telemetry</TabButton>
             </div>
-            {tab === 'worldview' && (
-                <div className="Viewports__Content">
-                    <Worldview />
-                </div>
-            )}
-            {tab === 'logs' && (
-                <div className="Viewports__Content">
-                    <LogView />
-                </div>
-            )}
+            <div className="Viewports__Content" style={{
+                display: tab === 'worldview' ? 'flex' : 'none'
+            }}>
+                <Worldview />
+            </div>
+            <div className="Viewports__Content" style={{
+                display: tab === 'logs' ? 'flex' : 'none'
+            }}>
+                <LogView />
+            </div>
             <div className="Viewports__Content" style={{
                 display: tab === 'telemetry' ? 'flex' : 'none'
             }}>
