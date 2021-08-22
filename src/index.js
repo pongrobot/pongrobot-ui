@@ -27,14 +27,16 @@ function Root() {
         <div className="LayoutHorizontal">
           {!connected && (
               <div className="OfflineOverlay">
-                <NonIdealState
-                  icon='offline'
-                  title='Brobot Offline'
-                  description='The connection to Brobot is offline. The UI will automatically reconnect when possible.'
-                  action={(
-                    <Spinner size={16} />
-                  )}
-                />
+                <div className="OfflineOverlay__Inner bp3-card bp3-elevation-2">
+                  <NonIdealState
+                    icon='offline'
+                    title='Brobot Offline'
+                    description='The UI will automatically reconnect when possible.'
+                    action={(
+                      <Spinner size={16} />
+                    )}
+                  />
+                </div>
               </div>
           )}
             <Sidebar />

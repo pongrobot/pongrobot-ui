@@ -81,4 +81,13 @@ code {
   left: 0;
   right: 0;
   background-color: rgba($light-gray1, 0.75);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__Inner {
+    padding: 10px;
+    background-color: $light-gray3;
+  }
 }
