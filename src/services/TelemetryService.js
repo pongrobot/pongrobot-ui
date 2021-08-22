@@ -1,14 +1,24 @@
 import BaseSubscriptionService from "./BaseSubscriptionService";
 import axios from "axios";
+import { encode } from "@msgpack/msgpack";
 
 
 class TelemetryService extends BaseSubscriptionService {
     constructor() {
         super();
 
-        this.cache = {};
+        this.data = {
+            parameters: {
+
+            },
+            telemetry: {
+                cpu: null,
+                memory: null,
+                disk: null
+            }
+        };
         this.online = false;
-        this.url = `ws://brobot/`;
+        this.url = `ws://localhost:8080/data`;
         console.log('Initializing Socket API server...');
         this.ws = null;
         this.connectSocket();
@@ -80,31 +90,25 @@ class TelemetryService extends BaseSubscriptionService {
 
     sendSocketMessage(body) {
         // TODO: Send raw message over socket
+        if (this.online) {
+            this.ws.send(JSON.stringify(body));
+        }
     }
 
-    // High-level functions
-    sendShutdownCommand() {
-
+    sendCommand(cmdName) {
+        this.sendSocketMessage({
+            type: 0,
+            key: cmdName,
+            value: 0.0
+        });
     }
 
-    sendRestartCommand() {
-
-    }
-
-    sendRestartRosCommand() {
-
-    }
-
-    sendZeroYawGimbalCommand() {
-
-    }
-
-    sendLaunchBallCommand() {
-
-    }
-
-    sendSpinUpMotorsCommand() {
-
+    sendParameter(paramName, paramValue) {
+        this.sendSocketMessage({
+            type: 1,
+            key: paramName,
+            value: paramValue
+        });
     }
 }
 

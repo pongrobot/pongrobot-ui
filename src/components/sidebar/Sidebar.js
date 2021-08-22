@@ -4,6 +4,7 @@ import {Button, ButtonGroup, FormGroup, Intent, NumericInput, Slider} from "@blu
 import classNames from "classnames";
 import CollapsibleSection from "../collapsible-section/CollapsibleSection";
 import {useLocalStorage} from "react-use";
+import TelemetryService from '../../services/TelemetryService';
 
 function Sidebar() {
     const [isOpen, setIsOpen] = useLocalStorage('sidebar', false);
@@ -49,17 +50,17 @@ function Sidebar() {
                             <h1>System</h1>
                             <ButtonGroup fill vertical>
                                 <ButtonGroup fill>
-                                <Button intent={Intent.DANGER} icon="power" onClick={() => {}}>Shutdown</Button>
-                                <Button intent={Intent.WARNING} icon="refresh" onClick={() => {}}>Restart</Button>
+                                <Button intent={Intent.DANGER} icon="power" onClick={() => TelemetryService.sendCommand('shutdown_rpi')}>Shutdown</Button>
+                                <Button intent={Intent.WARNING} icon="refresh" onClick={() => TelemetryService.sendCommand('restart_rpi')}>Restart</Button>
                                 </ButtonGroup>
-                                <Button>Restart ROS</Button>
+                                <Button onClick={() => TelemetryService.sendCommand('restart_ros')}>Restart ROS</Button>
                             </ButtonGroup>
                             <br />
                             <h1>Hardware Utilities</h1>
                             <ButtonGroup fill vertical>
-                                <Button fill>Zero Yaw Gimbal</Button>
-                                <Button fill onClick={() => {}}>Launch Ball</Button>
-                                <Button fill onClick={() => {}}>Spin Up Motors</Button>
+                                <Button fill onClick={() => TelemetryService.sendCommand('zero_yaw_gimbal')}>Zero Yaw Gimbal</Button>
+                                <Button fill onClick={() => TelemetryService.sendCommand('launch_ball')}>Launch Ball</Button>
+                                <Button fill onClick={() => TelemetryService.sendCommand('spin_up_motors')}>Spin Up Motors</Button>
                             </ButtonGroup>
                         </CollapsibleSection>
                         <CollapsibleSection padding title={"Perception Options"}>

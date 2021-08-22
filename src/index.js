@@ -4,13 +4,16 @@ import './assets/css/main.scss';
 import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 
-import { FocusStyleManager } from "@blueprintjs/core";
+import { FocusStyleManager, NonIdealState, Spinner } from "@blueprintjs/core";
 import Viewports from "./components/viewports/Viewports";
 import TelemetryService from "./services/TelemetryService";
+import useTelemetrySubscription from './hooks/useTelemetrySubscription';
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
 function Root() {
+    const connected = useTelemetrySubscription('online', false);
+
     /**
      * Sidebar
      *
@@ -22,6 +25,18 @@ function Root() {
      */
     return (
         <div className="LayoutHorizontal">
+          {!connected && (
+              <div className="OfflineOverlay">
+                <NonIdealState
+                  icon='offline'
+                  title='Brobot Offline'
+                  description='The connection to Brobot is offline. The UI will automatically reconnect when possible.'
+                  action={(
+                    <Spinner size={16} />
+                  )}
+                />
+              </div>
+          )}
             <Sidebar />
             <div className="LayoutVertical">
                 <Header />
@@ -32,8 +47,6 @@ function Root() {
 }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>,
+  <Root />,
   document.getElementById('root')
 );
