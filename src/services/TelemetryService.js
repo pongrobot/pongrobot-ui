@@ -18,7 +18,7 @@ class TelemetryService extends BaseSubscriptionService {
             }
         };
         this.online = false;
-        this.url = `ws://localhost:8080/data`;
+        this.url = `ws://${window.location.hostname}:8080/data`;
         console.log('Initializing Socket API server...');
         this.ws = null;
         this.connectSocket();
