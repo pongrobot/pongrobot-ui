@@ -8,6 +8,7 @@ import { FocusStyleManager, NonIdealState, Spinner } from "@blueprintjs/core";
 import Viewports from "./components/viewports/Viewports";
 import TelemetryService from "./services/TelemetryService";
 import useTelemetrySubscription from './hooks/useTelemetrySubscription';
+import { BrobotContextProvider } from './context/BrobotContext';
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
@@ -24,6 +25,7 @@ function Root() {
      *
      */
     return (
+      <BrobotContextProvider>
         <div className="LayoutHorizontal">
           {!connected && (
               <div className="OfflineOverlay">
@@ -45,6 +47,7 @@ function Root() {
                 <Viewports />
             </div>
         </div>
+      </BrobotContextProvider>
     );
 }
 

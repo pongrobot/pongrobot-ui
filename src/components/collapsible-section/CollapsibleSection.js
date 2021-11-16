@@ -19,7 +19,7 @@ function CollapsibleSection({ title, children, padding, flex, startOpen, icon })
     return (
         <div className={containerClassNames}>
             <Button className={buttonClassNames} onClick={() => setCollapsed(!collapsed)}
-            icon={collapsed ? 'chevron-down' : 'chevron-right'} rightIcon={icon}>
+            icon={collapsed ? 'chevron-right' : 'chevron-down'} rightIcon={icon}>
                 <div className="unselectable">
                     {title}
                 </div>

@@ -22,7 +22,6 @@ function Viewports() {
         <div className="Viewports">
             <div className="Viewports__Tabs">
                 <TabButton active={tab === 'worldview'} onClick={() => setTab("worldview")}>Worldview</TabButton>
-                <TabButton active={tab === 'logs'} onClick={() => setTab("logs")}>Logs</TabButton>
                 <TabButton active={tab === 'telemetry'} onClick={() => setTab("telemetry")}>Telemetry</TabButton>
             </div>
             <div className="Viewports__Content" style={{

@@ -18,7 +18,7 @@ class TelemetryService extends BaseSubscriptionService {
             }
         };
         this.online = false;
-        this.url = `ws://${window.location.hostname}:8080/data`;
+        this.url = `ws://brobot:8080/data`;
         console.log('Initializing Socket API server...');
         this.ws = null;
         this.connectSocket();
@@ -68,6 +68,7 @@ class TelemetryService extends BaseSubscriptionService {
             //TODO: Handle incoming message
             // Store the value of the message in the cache
             // Notify subscribers of the update
+            console.log(event);
         };
         this.ws.onclose = () => {
             // Connection to socket has failed or been closed.
