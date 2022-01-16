@@ -1,5 +1,5 @@
 import './TelemetryView.scss';
-import {useContext, useEffect, useRef} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import jpeg from 'jpeg-js';
 import useTelemetrySubscription from '../../hooks/useTelemetrySubscription';
 import { Icon } from '@blueprintjs/core';
@@ -45,12 +45,23 @@ function TelemetryView() {
     const launcherVelocity = useTelemetrySubscription('launcher_velocity', null);
     const launcherYaw = useTelemetrySubscription('launcher_yaw', null);
 
+    const [hasTarget, setHasTarget] = useState(false);
+    const [hasBall, setHasBall] = useState(false);
+
+    useEffect(() => {
+        if (target.x) {
+            setHasTarget(true); 
+        } else {
+            setHasTarget(false);
+        }
+    }, [target]);
+
     return (
         <div className="TelemetryView">
             <h4 style={{marginTop: '0px'}}>Camera Pose</h4>
             <div className="TelemetryView__Row">
                 <div className="bp3-card TelemetryView__Card">
-                    <Icon icon="move" iconSize="32" />
+                    <Icon icon="move" iconSize="24" />
                     <div className="TelemetryView__Card__Text">
                         <h2>X: {cameraFrame.x.toFixed(4)} m</h2>
                         <h2>Y: {cameraFrame.y.toFixed(4)} m</h2>
@@ -58,25 +69,68 @@ function TelemetryView() {
                     </div>
                 </div>
                 <div className="bp3-card TelemetryView__Card">
-                    <Icon icon="refresh" iconSize="32" />
+                    <Icon icon="refresh" iconSize="24" />
                     <div className="TelemetryView__Card__Text">
-                        <h2>RX: {cameraFrame.rx.toFixed(4)} rad</h2>
-                        <h2>RY: {cameraFrame.ry.toFixed(4)} rad</h2>
-                        <h2>RZ: {cameraFrame.rz.toFixed(4)} rad</h2>
+                        <h2>RX: {cameraFrame.rx.toFixed(2)} rad</h2>
+                        <h2>RY: {cameraFrame.ry.toFixed(2)} rad</h2>
+                        <h2>RZ: {cameraFrame.rz.toFixed(2)} rad</h2>
                     </div>
                 </div>
             </div>
-            <h4>Launcher</h4>
+            <h4>Launcher Status</h4>
+            <div className="TelemetryView__Row">
             <div className="bp3-card TelemetryView__Card">
+                <Icon icon="locate" iconSize="24" />
                 <div className="TelemetryView__Card__Text">
                     <h2>Target X: {target.x ? target.x.toFixed(4) : '--'} m</h2>
                     <h2>Target Y: {target.y ? target.y.toFixed(4) : '--'} m</h2>
                     <h2>Target Z: {target.z ? target.z.toFixed(4) : '--'} m</h2>
                 </div>
+            </div>
+            <div className="bp3-card TelemetryView__Card">
+                <Icon icon="send-to" iconSize="24" />
                 <div className="TelemetryView__Card__Text">
                     <h2>Velocity: {launcherVelocity ? launcherVelocity.toFixed(4) : '--'} m/s</h2>
                     <h2>Yaw: {launcherYaw ? launcherYaw.toFixed(0) : '--'} deg</h2>
                 </div>
+            </div>
+            </div>
+            <div className="TelemetryView__Row" style={{marginTop: '10px'}}>
+                <div className="bp3-card TelemetryView__Card" style={{
+                    backgroundColor: hasBall ? '#a8ff9e' : '#ffb1b1'
+                }}>
+                    <div className="TelemetryView__Card__BigText">
+                        {hasBall ? (
+                            <>
+                            Ball in Launcher
+                            </>
+                        ) : (
+                            <>
+                            No Ball in Launcher
+                            </>
+                        )}
+                    </div>
+                </div>
+                <div className="bp3-card TelemetryView__Card" style={{
+                    backgroundColor: hasTarget ? '#cc9eff' : '#ffb1b1'
+                }}>
+                    <div className="TelemetryView__Card__BigText">
+                        {hasTarget ? (
+                            <>
+                            Target Acquired
+                            </>
+                        ) : (
+                            <>
+                            No Target
+                            </>
+                        )}
+                    </div>
+                </div>
+            </div>
+            <div style={{
+                minHeight: '100px'
+            }}>
+
             </div>
         </div>
     );

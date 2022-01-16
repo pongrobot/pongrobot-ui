@@ -13,21 +13,38 @@
   }
 
   &__Card {
-    flex: 0 0 auto;
+    flex: 1;
     display: flex;
     justify-content: row;
     color: #30404D;
     margin-right: 10px;
     overflow: auto;
+    background-color: #F5F8FA;
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
 
     .bp3-icon {
       color: #738694;
+      opacity: 0.5;
 
     }
 
     &__Text {
-      margin-left: 20px;
-      margin-right: 20px;
+      margin-left: 15px;
+      margin-right: 15px;
+      min-height: 80px;
+    }
+    &__BigText {
+      min-height: 80px;
+      flex: 1;
+      font-size: 24px;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 
@@ -43,6 +60,7 @@
   .TelemetryView__Card {
     margin-right: 0px;
     margin-bottom: 10px;
+    flex: 0 0 auto;
   }
   .TelemetryView__Row {
     flex-direction: column;

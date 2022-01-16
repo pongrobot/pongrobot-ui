@@ -49,12 +49,24 @@ function CameraPointCloud() {
         };
         const buffer = Buffer.from(blob);
         for (let i = 0; i < numPoints; i++) {
+            /*
             let startIndex = i * 13;
             let x = buffer.readFloatLE(startIndex + 0);
             let y = buffer.readFloatLE(startIndex + 4);
             let z = buffer.readFloatLE(startIndex + 8);
 
             let colorRaw = buffer.readUInt8(startIndex + 12);
+            let red =   ((colorRaw & 0xE0) >> 5) / 8.0;
+            let green = ((colorRaw & 0x1C) >> 2) / 8.0;
+            let blue =  ((colorRaw & 0x03) >> 0) / 4.0;
+            */
+
+            let startIndex = i * 8;
+            let x = (buffer.readUInt16LE(startIndex + 0) / 65535.0) * 10.0 - 5.0;
+            let y = ((buffer.readUInt16LE(startIndex + 2) / 65535.0) * 10.0) - 0.0;
+            let z = ((buffer.readUInt16LE(startIndex + 4) / 65535.0) * 10.0) - 5.0;
+
+            let colorRaw = buffer.readUInt8(startIndex + 6);
             let red =   ((colorRaw & 0xE0) >> 5) / 8.0;
             let green = ((colorRaw & 0x1C) >> 2) / 8.0;
             let blue =  ((colorRaw & 0x03) >> 0) / 4.0;
@@ -245,7 +257,8 @@ function Worldview() {
                         </group>
                         <CameraPointCloud />
                     </group>
-                    <OrbitControls ref={controlsRef} camera={camera} />
+                    <OrbitControls ref={controlsRef} camera={camera} 
+                    />
                     <ambientLight intensity={0.1} />
                     <directionalLight color="white" position={[1, 5, 2]} />
                     <gridHelper size={10} divisions={10} rotation={[0, 0, 0]} />
