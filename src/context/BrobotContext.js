@@ -5,10 +5,10 @@ const BrobotContext = React.createContext(null);
 
 
 function BrobotContextProvider({children}) {
-    const [maxDepth, setMaxDepth] = useRosParam('max-depth', 4);
-    const [minDepth, setMinDepth] = useRosParam('min-depth', 0.1);
+    const [maxDepth, setMaxDepth] = useRosParam('max-depth', 3);
+    const [minDepth, setMinDepth] = useRosParam('min-depth', 0.5);
     const [maxHeight, setMaxHeight] = useRosParam('max-height', 1.5);
-    const [fudgeFactor, setFudgeFactor] = useRosParam('max-height', 100);
+    const [fudgeFactor, setFudgeFactor] = useRosParam('vesc-fudge', 100);
 
     return (
         <BrobotContext.Provider value={{

@@ -1,5 +1,4 @@
 import './Header.scss';
-import {useContext} from "react";
 import {Icon} from "@blueprintjs/core";
 import useTelemetrySubscription from '../../hooks/useTelemetrySubscription';
 

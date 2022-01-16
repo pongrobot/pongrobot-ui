@@ -2,4 +2,49 @@
   flex: 1;
   padding: 15px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  h4 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  &__Card {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: row;
+    color: #30404D;
+    margin-right: 10px;
+    overflow: auto;
+
+    .bp3-icon {
+      color: #738694;
+
+    }
+
+    &__Text {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+
+  &__Row {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+  }
+}
+
+@media(max-width: 800px) {
+  .TelemetryView__Card {
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+  .TelemetryView__Row {
+    flex-direction: column;
+  }
 }

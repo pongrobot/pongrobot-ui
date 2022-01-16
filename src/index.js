@@ -14,6 +14,7 @@ FocusStyleManager.onlyShowFocusOnTabs();
 
 function Root() {
     const connected = useTelemetrySubscription('online', false);
+    const showConnectedOverlay = false;
 
     /**
      * Sidebar
@@ -26,21 +27,21 @@ function Root() {
      */
     return (
       <BrobotContextProvider>
-        <div className="LayoutHorizontal">
-          {!connected && (
-              <div className="OfflineOverlay">
-                <div className="OfflineOverlay__Inner bp3-card bp3-elevation-2">
-                  <NonIdealState
-                    icon='offline'
-                    title='Brobot Offline'
-                    description='The UI will automatically reconnect when possible.'
-                    action={(
-                      <Spinner size={16} />
-                    )}
-                  />
-                </div>
+        {(!connected && showConnectedOverlay) && (
+            <div className="OfflineOverlay">
+              <div className="OfflineOverlay__Inner bp3-card bp3-elevation-2">
+                <NonIdealState
+                  icon='offline'
+                  title='Brobot Offline'
+                  description='The UI will automatically reconnect when possible.'
+                  action={(
+                    <Spinner size={16} />
+                  )}
+                />
               </div>
-          )}
+            </div>
+        )}
+        <div className="LayoutHorizontal">
             <Sidebar />
             <div className="LayoutVertical">
                 <Header />

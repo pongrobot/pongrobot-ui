@@ -1,6 +1,6 @@
 import {useState} from "react";
 import './CollapsibleSection.scss';
-import {Button, Collapse, Icon} from "@blueprintjs/core";
+import {Button, Collapse} from "@blueprintjs/core";
 import classNames from "classnames";
 
 function CollapsibleSection({ title, children, padding, flex, startOpen, icon }) {

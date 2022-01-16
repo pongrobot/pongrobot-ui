@@ -22,10 +22,13 @@ class BaseSubscriptionService {
         }
     }
 
-    _callSubscribers(subscription, data) {
+    _callSubscribers(subscription, data, expandObject = true) {
         if (Object.prototype.hasOwnProperty.call(this.subscriptions, subscription)) {
             Object.values(this.subscriptions[subscription]).forEach((func) => {
                 if (func) {
+                    if (!expandObject) {
+                        return func(data);
+                    }
                     if (data === null) {
                         func(null);
                     } else if (typeof data === 'object' && !Array.isArray(data)) {

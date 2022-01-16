@@ -73,6 +73,7 @@ function Sidebar() {
                                 <Button fill onClick={() => TelemetryService.sendCommand('zero_yaw_gimbal')}>Zero Yaw Gimbal</Button>
                                 <Button fill onClick={() => TelemetryService.sendCommand('launch_ball')}>Launch Ball</Button>
                                 <Button fill onClick={() => TelemetryService.sendCommand('spin_up_motors')}>Spin Up Motors</Button>
+                                <Button fill onClick={() => TelemetryService.sendCommand('calibrate')}>Calibrate</Button>
                             </ButtonGroup>
                         </CollapsibleSection>
                         <CollapsibleSection padding title={"Perception Options"} startOpen>
