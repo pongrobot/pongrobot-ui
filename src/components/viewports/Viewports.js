@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import {Button} from "@blueprintjs/core";
 import LogView from "../log-view/LogView";
 import TelemetryView from "../telemetry-view/TelemetryView";
+import CameraView from '../camera-view/CameraView';
 
 function TabButton({ active, onClick, children }) {
     if (active) {
@@ -22,6 +23,7 @@ function Viewports() {
         <div className="Viewports">
             <div className="Viewports__Tabs">
                 <TabButton active={tab === 'worldview'} onClick={() => setTab("worldview")}>Worldview</TabButton>
+                <TabButton active={tab === 'camera'} onClick={() => setTab("camera")}>Camera</TabButton>
                 <TabButton active={tab === 'telemetry'} onClick={() => setTab("telemetry")}>Telemetry</TabButton>
             </div>
             <div className="Viewports__Content" style={{
@@ -38,6 +40,13 @@ function Viewports() {
                 display: tab === 'telemetry' ? 'flex' : 'none'
             }}>
                 <TelemetryView />
+            </div>
+            <div className="Viewports__Content" style={{
+                display: tab === 'camera' ? 'flex' : 'none'
+            }}>
+                {(tab === 'camera') && (
+                    <CameraView active={tab === 'camera'} />
+                )}
             </div>
         </div>
     )

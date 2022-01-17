@@ -62,9 +62,9 @@ function CameraPointCloud() {
             */
 
             let startIndex = i * 8;
-            let x = (buffer.readUInt16LE(startIndex + 0) / 65535.0) * 10.0 - 5.0;
-            let y = ((buffer.readUInt16LE(startIndex + 2) / 65535.0) * 10.0) - 0.0;
-            let z = ((buffer.readUInt16LE(startIndex + 4) / 65535.0) * 10.0) - 5.0;
+            let x = ((buffer.readUInt16LE(startIndex + 0) / 65535.0) * 10.0) - 5.0;
+            let y = ((buffer.readUInt16LE(startIndex + 2) / 65535.0) * 10.0) - 5.0;
+            let z = ((buffer.readUInt16LE(startIndex + 4) / 65535.0) * 10.0) - 0.0;
 
             let colorRaw = buffer.readUInt8(startIndex + 6);
             let red =   ((colorRaw & 0xE0) >> 5) / 8.0;

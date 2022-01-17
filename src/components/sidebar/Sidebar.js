@@ -3,12 +3,10 @@ import {useContext, useState} from "react";
 import {Button, ButtonGroup, FormGroup, Intent, NumericInput, Slider} from "@blueprintjs/core";
 import classNames from "classnames";
 import CollapsibleSection from "../collapsible-section/CollapsibleSection";
-import {useLocalStorage} from "react-use";
 import TelemetryService from '../../services/TelemetryService';
 import BrobotContext from '../../context/BrobotContext';
 
 function Sidebar() {
-    const [isOpen, setIsOpen] = useLocalStorage('sidebar', false);
 
     const {
         maxDepth,
@@ -18,7 +16,9 @@ function Sidebar() {
         maxHeight,
         setMaxHeight,
         fudgeFactor,
-        setFudgeFactor
+        setFudgeFactor,
+        sidebarOpen: isOpen,
+        setSidebarOpen: setIsOpen
     } = useContext(BrobotContext);
 
     const classes = classNames({
@@ -76,7 +76,7 @@ function Sidebar() {
                                 <Button fill onClick={() => TelemetryService.sendCommand('calibrate')}>Calibrate</Button>
                             </ButtonGroup>
                         </CollapsibleSection>
-                        <CollapsibleSection padding title={"Perception Options"} startOpen>
+                        <CollapsibleSection padding title={"Point Cloud Options"} startOpen>
                             <h1>Sensing Boundaries</h1>
                             <FormGroup label="Near Plane (m)" fill>
                                 <NumericInput clampValueOnBlur fill min={0.1} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={minDepth} onValueChange={(e) => setMinDepth(e)}/>
@@ -86,6 +86,23 @@ function Sidebar() {
                             </FormGroup>
                             <FormGroup label="Maximum Height (m)" fill>
                                 <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={maxHeight} onValueChange={(e) => setMaxHeight(e)}/>
+                            </FormGroup>
+                        </CollapsibleSection>
+                        <CollapsibleSection padding title={"Clustering Options"} startOpen>
+                            <FormGroup label="EPS Angle" fill>
+                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                            </FormGroup>
+                            <FormGroup label="Distance Threshold" fill>
+                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                            </FormGroup>
+                            <FormGroup label="Tolerance" fill>
+                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                            </FormGroup>
+                            <FormGroup label="Min Cluster Size" fill>
+                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                            </FormGroup>
+                            <FormGroup label="Max Cluster Size" fill>
+                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
                             </FormGroup>
                         </CollapsibleSection>
                         <CollapsibleSection padding title={"Actuation Options"} startOpen>
