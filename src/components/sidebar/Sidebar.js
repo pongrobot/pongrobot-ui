@@ -18,7 +18,17 @@ function Sidebar() {
         fudgeFactor,
         setFudgeFactor,
         sidebarOpen: isOpen,
-        setSidebarOpen: setIsOpen
+        setSidebarOpen: setIsOpen,
+        epsAngle,
+        setEpsAngle,
+        distanceThreshold,
+        setDistanceThreshold,
+        tolerance,
+        setTolerance,
+        minClusterSize,
+        setMinClusterSize,
+        maxClusterSize, 
+        setMaxClusterSize
     } = useContext(BrobotContext);
 
     const classes = classNames({
@@ -90,26 +100,26 @@ function Sidebar() {
                         </CollapsibleSection>
                         <CollapsibleSection padding title={"Clustering Options"} startOpen>
                             <FormGroup label="EPS Angle" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={epsAngle} onValueChange={(e) => setEpsAngle(e)}/>
                             </FormGroup>
                             <FormGroup label="Distance Threshold" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={distanceThreshold} onValueChange={(e) => setDistanceThreshold(e)}/>
                             </FormGroup>
                             <FormGroup label="Tolerance" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={tolerance} onValueChange={(e) => setTolerance(e)}/>
                             </FormGroup>
                             <FormGroup label="Min Cluster Size" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                                <NumericInput clampValueOnBlur fill min={0} max={1000000} stepSize={10} minorStepSize={1} majorStepSize={100} value={minClusterSize} onValueChange={(e) => setMinClusterSize(e)}/>
                             </FormGroup>
                             <FormGroup label="Max Cluster Size" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={0} onValueChange={(e) => {}}/>
+                                <NumericInput clampValueOnBlur fill min={0} max={1000000} stepSize={10} minorStepSize={1} majorStepSize={100} value={maxClusterSize} onValueChange={(e) => setMaxClusterSize(e)}/>
                             </FormGroup>
                         </CollapsibleSection>
                         <CollapsibleSection padding title={"Actuation Options"} startOpen>
                             <h1>Actuation</h1>
                             <p></p>
-                            <FormGroup label="VESC Fudge Factor Scale (%)" fill>
-                                <NumericInput clampValueOnBlur fill min={50} max={200} stepSize={1} minorStepSize={0.1} majorStepSize={10} value={fudgeFactor} onValueChange={(e) => setFudgeFactor(e)} />
+                            <FormGroup label="VESC Fudge Factor Scalar" fill>
+                                <NumericInput clampValueOnBlur fill min={0.0} max={2.0} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.05} value={fudgeFactor} onValueChange={(e) => setFudgeFactor(e)} />
                             </FormGroup>
                             <br />
                         </CollapsibleSection>
