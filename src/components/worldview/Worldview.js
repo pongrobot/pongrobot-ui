@@ -238,12 +238,13 @@ function Worldview() {
                     >
                         <ThickAxisHelper />
                         <PerspectiveCamera
+                            manual
                             rotation={[0,  - Math.PI / 2, 0]}
                             ref={brobotCamera}
                             near={minDepth}
                             far={maxDepth}
                             fov={42.5}
-                            aspect={1.63294118}
+                            aspect={60/42.5}
                         />
                         <group position={[-0.225/2,0.02 - 0.150/2,0]}>
                             <mesh>

@@ -74,7 +74,7 @@ function CameraView({ active }) {
                 zIndex: 0
             }}>                
                     <div className="CameraView__Placeholder">
-                        <img src="http://brobot:8080/stream?topic=/camera/color/image_raw" />
+                        <img src="http://brobot:8080/stream?topic=/camera/color/image_raw" onError="this.style.display='none'"/>
                         <NonIdealState title="Camera Feed Offline" description="Brobot is offline." icon="offline" />
                     </div>
                 </TransformComponent>
