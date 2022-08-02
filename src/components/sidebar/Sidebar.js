@@ -5,6 +5,7 @@ import classNames from "classnames";
 import CollapsibleSection from "../collapsible-section/CollapsibleSection";
 import TelemetryService from '../../services/TelemetryService';
 import BrobotContext from '../../context/BrobotContext';
+import ValidatedInput from '../validated-input/ValidatedInput';
 
 function Sidebar() {
 
@@ -89,37 +90,37 @@ function Sidebar() {
                         <CollapsibleSection padding title={"Point Cloud Options"} startOpen>
                             <h1>Sensing Boundaries</h1>
                             <FormGroup label="Near Plane (m)" fill>
-                                <NumericInput clampValueOnBlur fill min={0.1} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={minDepth} onValueChange={(e) => setMinDepth(e)}/>
+                                <ValidatedInput fill min={0.1} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={minDepth} onValueChange={(e) => setMinDepth(e)}/>
                             </FormGroup>
                             <FormGroup label="Far Plane (m)" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={maxDepth} onValueChange={(e) => setMaxDepth(e)}/>
+                                <ValidatedInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={maxDepth} onValueChange={(e) => setMaxDepth(e)}/>
                             </FormGroup>
                             <FormGroup label="Maximum Height (m)" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={maxHeight} onValueChange={(e) => setMaxHeight(e)}/>
+                                <ValidatedInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={maxHeight} onValueChange={(e) => setMaxHeight(e)}/>
                             </FormGroup>
                         </CollapsibleSection>
                         <CollapsibleSection padding title={"Clustering Options"} startOpen>
                             <FormGroup label="EPS Angle" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={epsAngle} onValueChange={(e) => setEpsAngle(e)}/>
+                                <ValidatedInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={epsAngle} onValueChange={(e) => setEpsAngle(e)}/>
                             </FormGroup>
                             <FormGroup label="Distance Threshold" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={distanceThreshold} onValueChange={(e) => setDistanceThreshold(e)}/>
+                                <ValidatedInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={distanceThreshold} onValueChange={(e) => setDistanceThreshold(e)}/>
                             </FormGroup>
                             <FormGroup label="Tolerance" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={tolerance} onValueChange={(e) => setTolerance(e)}/>
+                                <ValidatedInput clampValueOnBlur fill min={0} max={10} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.1} value={tolerance} onValueChange={(e) => setTolerance(e)}/>
                             </FormGroup>
                             <FormGroup label="Min Cluster Size" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={1000000} stepSize={10} minorStepSize={1} majorStepSize={100} value={minClusterSize} onValueChange={(e) => setMinClusterSize(e)}/>
+                                <ValidatedInput clampValueOnBlur fill min={0} max={1000000} stepSize={10} minorStepSize={1} majorStepSize={100} value={minClusterSize} onValueChange={(e) => setMinClusterSize(e)}/>
                             </FormGroup>
                             <FormGroup label="Max Cluster Size" fill>
-                                <NumericInput clampValueOnBlur fill min={0} max={1000000} stepSize={10} minorStepSize={1} majorStepSize={100} value={maxClusterSize} onValueChange={(e) => setMaxClusterSize(e)}/>
+                                <ValidatedInput clampValueOnBlur fill min={0} max={1000000} stepSize={10} minorStepSize={1} majorStepSize={100} value={maxClusterSize} onValueChange={(e) => setMaxClusterSize(e)}/>
                             </FormGroup>
                         </CollapsibleSection>
                         <CollapsibleSection padding title={"Actuation Options"} startOpen>
                             <h1>Actuation</h1>
                             <p></p>
                             <FormGroup label="VESC Fudge Factor Scalar" fill>
-                                <NumericInput clampValueOnBlur fill min={0.0} max={2.0} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.05} value={fudgeFactor} onValueChange={(e) => setFudgeFactor(e)} />
+                                <ValidatedInput clampValueOnBlur fill min={0.0} max={2.0} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.05} value={fudgeFactor} onValueChange={(e) => setFudgeFactor(e)} />
                             </FormGroup>
                             <br />
                         </CollapsibleSection>
