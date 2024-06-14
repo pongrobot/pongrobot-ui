@@ -18,7 +18,7 @@ class TelemetryService extends BaseSubscriptionService {
             }
         };
         this.online = false;
-        this.url = `ws://brobot:8081/data`;
+        this.url = `ws://${window.location.hostname}:8081/data`;
         console.log('Initializing Socket API server...');
         this.ws = null;
         this.connectSocket();
