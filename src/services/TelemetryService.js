@@ -1,7 +1,4 @@
 import BaseSubscriptionService from "./BaseSubscriptionService";
-import axios from "axios";
-import { encode } from "@msgpack/msgpack";
-
 
 class TelemetryService extends BaseSubscriptionService {
     constructor() {

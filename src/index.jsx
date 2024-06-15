@@ -1,16 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './assets/css/main.scss';
 import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 
 import { FocusStyleManager, NonIdealState, Spinner } from "@blueprintjs/core";
 import Viewports from "./components/viewports/Viewports";
-import TelemetryService from "./services/TelemetryService";
 import useTelemetrySubscription from './hooks/useTelemetrySubscription';
 import { BrobotContextProvider } from './context/BrobotContext';
 
 FocusStyleManager.onlyShowFocusOnTabs();
+
+const container = document.getElementById('root');
+const root = createRoot(container);
 
 function Root() {
     const connected = useTelemetrySubscription('online', false);
@@ -52,7 +54,6 @@ function Root() {
     );
 }
 
-ReactDOM.render(
-  <Root />,
-  document.getElementById('root')
+root.render(
+  <Root />
 );

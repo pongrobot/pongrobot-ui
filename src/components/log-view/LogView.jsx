@@ -5,7 +5,6 @@ import {useEffect, useMemo, useRef, useState} from "react";
 import axios from "axios";
 import {Spinner} from "@blueprintjs/core";
 import classNames from "classnames";
-import {useInterval} from "rooks";
 
 const isErrorString = new RegExp('(\\[error\\])');
 const isWarningString = new RegExp('\\[\\s*warn\\]');

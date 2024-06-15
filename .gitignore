@@ -21,5 +21,4 @@ yarn-error.log*
 ui/node_modules/
 server/node_modules/
 ui/.idea/
-ui/build/
 .idea/

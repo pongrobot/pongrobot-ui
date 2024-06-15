@@ -11,7 +11,6 @@ import useTelemetrySubscription from '../../hooks/useTelemetrySubscription';
 import { useInterval } from 'react-use';
 import { extend } from "@react-three/fiber";
 import { shaderMaterial } from '@react-three/drei';
-import glsl from 'babel-plugin-glsl/macro';
 
 function CameraHelp({ camera }) {
 
@@ -77,31 +76,31 @@ function CameraPointCloud() {
         setCloudData(data);
     }, [blob]);
    
-    const PointsShaderMaterial = shaderMaterial(
-        // Uniform -> Allow to pass data in object level from react component to glsl
-        {
-            uColor: new THREE.Color(0.0, 0.0, 1.0)
-        },
-        // Vertex Shader -> Corner points of polygons
-        glsl`
-            attribute vec3 color;
-            varying lowp vec3 vColor;
-            void main() {
-                gl_PointSize = 10.0;
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                vColor = color;
-            }
-        `,
-        // Fragment Shader -> Color the polygon surface
-        glsl`
-            uniform vec3 uColor;
-            varying lowp vec3 vColor;
-            void main() {
-                gl_FragColor = vec4(vColor, 1.0); // modify to uColor if using uniform
-            }
-        `
-    );
-    extend({ PointsShaderMaterial });
+    // const PointsShaderMaterial = shaderMaterial(
+    //     // Uniform -> Allow to pass data in object level from react component to glsl
+    //     {
+    //         uColor: new THREE.Color(0.0, 0.0, 1.0)
+    //     },
+    //     // Vertex Shader -> Corner points of polygons
+    //     glsl`
+    //         attribute vec3 color;
+    //         varying lowp vec3 vColor;
+    //         void main() {
+    //             gl_PointSize = 10.0;
+    //             gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    //             vColor = color;
+    //         }
+    //     `,
+    //     // Fragment Shader -> Color the polygon surface
+    //     glsl`
+    //         uniform vec3 uColor;
+    //         varying lowp vec3 vColor;
+    //         void main() {
+    //             gl_FragColor = vec4(vColor, 1.0); // modify to uColor if using uniform
+    //         }
+    //     `
+    // );
+    // extend({ PointsShaderMaterial });
 
     return (
         <points frustumCulled={false}>
@@ -127,7 +126,7 @@ function CameraPointCloud() {
               }}
             />
           </bufferGeometry>
-          <pointsShaderMaterial attach="material" />
+          {/* <pointsShaderMaterial attach="material" /> */}
         </points>
     );
 }
