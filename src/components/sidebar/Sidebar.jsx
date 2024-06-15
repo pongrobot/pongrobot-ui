@@ -33,7 +33,7 @@ function Sidebar() {
     } = useContext(BrobotContext);
 
     const classes = classNames({
-        'bp3-dark': true,
+        'bp5-dark': true,
         Sidebar: true,
         Sidebar__Open: isOpen,
         Sidebar__Closed: !isOpen

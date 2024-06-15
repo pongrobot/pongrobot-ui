@@ -12,6 +12,8 @@ import { useInterval } from 'react-use';
 import { extend } from "@react-three/fiber";
 import { shaderMaterial } from '@react-three/drei';
 
+window.THREE = THREE;
+
 function CameraHelp({ camera }) {
 
     useHelper(camera, CameraHelper, 1, 'hotpink');
@@ -167,15 +169,15 @@ function ThickAxisHelper({ position, rotation }) {
     return (
         <group position={position || [0,0,0]} rotation={rotation || [0,0,0]}>
             <mesh rotation={[0, 0, 0]} position={[0, length/2, 0]}>
-                <cylinderBufferGeometry attach="geometry" args={[thickness, thickness, length, 32]} />
+                <cylinderGeometry attach="geometry" args={[thickness, thickness, length, 32]} />
                 <meshBasicMaterial attach="material" color={0x0000ff} opacity={0.75} transparent={true} />
             </mesh>
             <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, -length/2]}>
-                <cylinderBufferGeometry attach="geometry" args={[thickness, thickness, length, 32]} />
+                <cylinderGeometry attach="geometry" args={[thickness, thickness, length, 32]} />
                 <meshBasicMaterial attach="material" color={0x00ff00} opacity={0.75} transparent={true} />
             </mesh>
             <mesh rotation={[0, 0, Math.PI / 2]} position={[length/2, 0, 0]}>
-                <cylinderBufferGeometry attach="geometry" args={[thickness, thickness, length, 32]} />
+                <cylinderGeometry attach="geometry" args={[thickness, thickness, length, 32]} />
                 <meshBasicMaterial attach="material" color={0xff0000} opacity={0.75} transparent={true} />
             </mesh>
         </group>
