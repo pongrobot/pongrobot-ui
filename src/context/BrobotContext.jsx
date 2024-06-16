@@ -18,6 +18,9 @@ function BrobotContextProvider({children}) {
     const [minClusterSize, setMinClusterSize] = useRosParam('min-cluster-size', 100);
     const [maxClusterSize, setMaxClusterSize] = useRosParam('max-cluster-size', 20000);
 
+    const [yawFudgeOffset, setYawFudgeOffset] = useRosParam('yaw-fudge-offset', 0.0);
+    const [yawFudgeScalar, setYawFudgeScalar] = useRosParam('yaw-fudge-scalar', 0.0);
+
     return (
         <BrobotContext.Provider value={{
             maxDepth,
@@ -39,7 +42,9 @@ function BrobotContextProvider({children}) {
             minClusterSize,
             setMinClusterSize,
             maxClusterSize, 
-            setMaxClusterSize
+            setMaxClusterSize,
+            yawFudgeOffset, setYawFudgeOffset,
+            yawFudgeScalar, setYawFudgeScalar
         }}>
             {children}
         </BrobotContext.Provider>

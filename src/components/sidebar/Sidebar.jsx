@@ -29,7 +29,11 @@ function Sidebar() {
         minClusterSize,
         setMinClusterSize,
         maxClusterSize, 
-        setMaxClusterSize
+        setMaxClusterSize,
+        yawFudgeScalar,
+        setYawFudgeScalar,
+        yawFudgeOffset,
+        setYawFudgeOffset
     } = useContext(BrobotContext);
 
     const classes = classNames({
@@ -121,6 +125,12 @@ function Sidebar() {
                             <p></p>
                             <FormGroup label="VESC Fudge Factor Scalar" fill>
                                 <ValidatedInput clampValueOnBlur fill min={0.0} max={2.0} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.05} value={fudgeFactor} onValueChange={(e) => setFudgeFactor(e)} />
+                            </FormGroup>
+                            <FormGroup label="Yaw Fudge Offset" fill>
+                                <ValidatedInput clampValueOnBlur fill min={-10.0} max={10.0} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.05} value={yawFudgeOffset} onValueChange={(e) => setYawFudgeOffset(e)} />
+                            </FormGroup>
+                            <FormGroup label="Yaw Fudge Scalar" fill>
+                                <ValidatedInput clampValueOnBlur fill min={-10.0} max={10.0} stepSize={0.01} minorStepSize={0.001} majorStepSize={0.05} value={yawFudgeScalar} onValueChange={(e) => setYawFudgeScalar(e)} />
                             </FormGroup>
                             <br />
                         </CollapsibleSection>
