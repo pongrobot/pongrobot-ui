@@ -71,9 +71,9 @@ function TelemetryView() {
                 <div className="bp3-card TelemetryView__Card">
                     <Icon icon="refresh" iconSize="24" />
                     <div className="TelemetryView__Card__Text">
-                        <h2>RX: {cameraFrame.rx.toFixed(2)} rad</h2>
-                        <h2>RY: {cameraFrame.ry.toFixed(2)} rad</h2>
-                        <h2>RZ: {cameraFrame.rz.toFixed(2)} rad</h2>
+                        <h2>RX: {cameraFrame.rx.toFixed(6)} rad</h2>
+                        <h2>RY: {cameraFrame.ry.toFixed(6)} rad</h2>
+                        <h2>RZ: {cameraFrame.rz.toFixed(6)} rad</h2>
                     </div>
                 </div>
             </div>
