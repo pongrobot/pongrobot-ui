@@ -269,7 +269,7 @@ function Worldview() {
                     <TableMarker />
                     {cupMarkers.map((item) => (
                         <mesh position={[item.x, item.z, -item.y]}>
-                            <cylinderBufferGeometry attach="geometry" args={[0.05, 0.05, 0.1, 32]} />
+                            <cylinderGeometry attach="geometry" args={[0.05, 0.05, 0.1, 32]} />
                             <meshNormalMaterial attach="material" />
                             <ThickAxisHelper />
                         </mesh>
